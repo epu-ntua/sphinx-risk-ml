@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\mkont\PycharmProjects\RiskML\kompose.exe convert
+    kompose.version: 1.25.0 (a70f80cc)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mlflow-code
+  name: mlflow-code
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mlflow-code
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Users\mkont\PycharmProjects\RiskML\kompose.exe convert
+        kompose.version: 1.25.0 (a70f80cc)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/backend: "true"
+        io.kompose.network/frontend: "true"
+        io.kompose.service: mlflow-code
+    spec:
+      containers:
+        - args:
+            - bash
+            - -c
+            - sleep 5 && (python3 api/server.py & python3 shell_scripts/shell_script_composer.py && ./shell_scripts/init_models.sh )
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              value: minio-id
+            - name: AWS_SECRET_ACCESS_KEY
+              value: minio-key
+            - name: MLFLOW_S3_ENDPOINT_URL
+              value: http://minio:9000
+            - name: MLFLOW_TRACKING_URI
+              value: http://mlflow_server:5000
+          image: mlflow_code
+          name: mlflow-code
+          ports:
+            - containerPort: 5010
+            - containerPort: 5011
+            - containerPort: 5012
+            - containerPort: 5013
+            - containerPort: 5014
+            - containerPort: 5015
+            - containerPort: 5020
+            - containerPort: 5021
+            - containerPort: 5022
+            - containerPort: 5023
+            - containerPort: 5024
+            - containerPort: 5025
+            - containerPort: 5026
+            - containerPort: 5030
+            - containerPort: 5031
+            - containerPort: 5032
+            - containerPort: 5100
+          resources: {}
+          workingDir: /code/
+      restartPolicy: Always
+status: {}

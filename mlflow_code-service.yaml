@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\mkont\PycharmProjects\RiskML\kompose.exe convert
+    kompose.version: 1.25.0 (a70f80cc)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mlflow-code
+  name: mlflow_code
+spec:
+  ports:
+    - name: "5010"
+      port: 5010
+      targetPort: 5010
+    - name: "5011"
+      port: 5011
+      targetPort: 5011
+    - name: "5012"
+      port: 5012
+      targetPort: 5012
+    - name: "5013"
+      port: 5013
+      targetPort: 5013
+    - name: "5014"
+      port: 5014
+      targetPort: 5014
+    - name: "5015"
+      port: 5015
+      targetPort: 5015
+    - name: "5020"
+      port: 5020
+      targetPort: 5020
+    - name: "5021"
+      port: 5021
+      targetPort: 5021
+    - name: "5022"
+      port: 5022
+      targetPort: 5022
+    - name: "5023"
+      port: 5023
+      targetPort: 5023
+    - name: "5024"
+      port: 5024
+      targetPort: 5024
+    - name: "5025"
+      port: 5025
+      targetPort: 5025
+    - name: "5026"
+      port: 5026
+      targetPort: 5026
+    - name: "5030"
+      port: 5030
+      targetPort: 5030
+    - name: "5031"
+      port: 5031
+      targetPort: 5031
+    - name: "5032"
+      port: 5032
+      targetPort: 5032
+    - name: "5100"
+      port: 5100
+      targetPort: 5100
+  selector:
+    io.kompose.service: mlflow-code
+status:
+  loadBalancer: {}

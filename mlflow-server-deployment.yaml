@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\mkont\PycharmProjects\RiskML\kompose.exe convert
+    kompose.version: 1.25.0 (a70f80cc)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mlflow-server
+  name: mlflow-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mlflow-server
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Users\mkont\PycharmProjects\RiskML\kompose.exe convert
+        kompose.version: 1.25.0 (a70f80cc)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/backend: "true"
+        io.kompose.network/frontend: "true"
+        io.kompose.service: mlflow-server
+    spec:
+      containers:
+        - args:
+            - bash
+            - -c
+            - mlflow server --backend-store-uri postgresql+psycopg2://:@pgdb:5432/ --host 0.0.0.0 --default-artifact-root s3://mlflow-bucket/
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              value: minio-id
+            - name: AWS_SECRET_ACCESS_KEY
+              value: minio-key
+            - name: MLFLOW_S3_ENDPOINT_URL
+              value: http://minio:9000
+            - name: POSTGRES_DATABASE
+            - name: POSTGRES_PASSWORD
+            - name: POSTGRES_USER
+          image: mlflow_server
+          name: mlflow-server
+          ports:
+            - containerPort: 5000
+          resources: {}
+      restartPolicy: Always
+status: {}
