@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: C:\Users\mkont\PycharmProjects\RiskML\kompose.exe convert
+    kompose.cmd: C:\Users\mkont\PycharmProjects\RiskML\Deployment\kompose.exe convert
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
   labels:
@@ -17,7 +17,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: C:\Users\mkont\PycharmProjects\RiskML\kompose.exe convert
+        kompose.cmd: C:\Users\mkont\PycharmProjects\RiskML\Deployment\kompose.exe convert
         kompose.version: 1.25.0 (a70f80cc)
       creationTimestamp: null
       labels:
@@ -37,7 +37,7 @@ spec:
             - name: PORT
               value: "9000"
           image: minio/mc:RELEASE.2019-07-17T22-13-42Z
-          name: create_bucket
+          name: create-bucket
           resources: {}
       restartPolicy: Always
 status: {}

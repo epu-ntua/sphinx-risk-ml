@@ -22,7 +22,7 @@ services:
             start_period: 3s
             retries: 3
 
-    create_bucket:
+    create-bucket:
         image: minio/mc:RELEASE.2019-07-17T22-13-42Z
         depends_on:
             - minio      
@@ -59,11 +59,11 @@ services:
         networks:
             - backend
 
-    mlflow_server:
+    mlflow-server:
         restart: always
         build: ../docker-mlflow-server
-        image: mlflow_server
-        container_name: mlflow_server
+        image: mlflow-server
+        container_name: mlflow-server
         ports:
             - 5000:5000
         expose:
@@ -90,11 +90,11 @@ services:
         #     start_period: 3s
         #     retries: 3
 
-    mlflow_code:
+    mlflow-code:
         restart: always
         build: ..
-        image: mlflow_code
-        container_name: mlflow_code
+        image: mlflow-code
+        container_name: mlflow-code
         ports:
             - 5010:5010
             - 5011:5011
@@ -114,15 +114,15 @@ services:
             - 5032:5032
             - 5100:5100
         environment:
-            MLFLOW_TRACKING_URI: http://mlflow_server:5000
+            MLFLOW_TRACKING_URI: http://mlflow-server:5000
             MLFLOW_S3_ENDPOINT_URL: http://minio:9000
             AWS_ACCESS_KEY_ID: 'minio-id'
             AWS_SECRET_ACCESS_KEY: 'minio-key'
         depends_on: 
             - minio 
-            - create_bucket
+            - create-bucket
             - pgdb
-            - mlflow_server
+            - mlflow-server
         working_dir: '/code/'
         # volumes:
         #     - ./:/code/ # remoooooooooooooooooooove

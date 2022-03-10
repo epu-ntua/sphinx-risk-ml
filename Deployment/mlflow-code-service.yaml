@@ -2,12 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    kompose.cmd: C:\Users\mkont\PycharmProjects\RiskML\kompose.exe convert
+    kompose.cmd: C:\Users\mkont\PycharmProjects\RiskML\Deployment\kompose.exe convert
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
   labels:
     io.kompose.service: mlflow-code
-  name: mlflow_code
+  name: mlflow-code
 spec:
   ports:
     - name: "5010"

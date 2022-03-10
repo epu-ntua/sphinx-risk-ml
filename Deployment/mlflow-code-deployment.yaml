@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: C:\Users\mkont\PycharmProjects\RiskML\kompose.exe convert
+    kompose.cmd: C:\Users\mkont\PycharmProjects\RiskML\Deployment\kompose.exe convert
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
   labels:
@@ -17,7 +17,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: C:\Users\mkont\PycharmProjects\RiskML\kompose.exe convert
+        kompose.cmd: C:\Users\mkont\PycharmProjects\RiskML\Deployment\kompose.exe convert
         kompose.version: 1.25.0 (a70f80cc)
       creationTimestamp: null
       labels:
@@ -38,8 +38,8 @@ spec:
             - name: MLFLOW_S3_ENDPOINT_URL
               value: http://minio:9000
             - name: MLFLOW_TRACKING_URI
-              value: http://mlflow_server:5000
-          image: mlflow_code
+              value: http://mlflow-server:5000
+          image: mlflow-code
           name: mlflow-code
           ports:
             - containerPort: 5010
